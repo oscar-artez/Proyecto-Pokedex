@@ -1,0 +1,9 @@
+.AnchoCard{
+    width: 15%;
+    flex: unset!important;
+    margin: 5% auto;
+}
+.GroupCard{
+    width: 70%;
+    margin: 0 auto;
+}
