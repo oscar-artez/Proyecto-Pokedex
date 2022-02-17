@@ -2,8 +2,21 @@
     width: 15%;
     flex: unset!important;
     margin: 5% auto;
+   
+}
+.card-group>.card+.card{
+    border-left: 1px solid rgba(0,0,0,.125)!important;
 }
 .GroupCard{
     width: 70%;
     margin: 0 auto;
+}
+.FlexTypesContainer{
+    display: flex;
+    justify-content: space-evenly;
+}
+.AnchoType{
+    width: 100%;
+    text-align: center;
+    margin: 0 1%;
 }

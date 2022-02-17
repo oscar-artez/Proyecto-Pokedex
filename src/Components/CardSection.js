@@ -1,16 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {CardBody, CardGroup, CardTitle, Card,CardImg} from 'reactstrap';
+import {CardBody, CardGroup, CardTitle, Card,CardImg, CardSubtitle} from 'reactstrap';
 import '../App.css';
+import { prefix } from '../Functions/Functions';
+import styles from '../Styles/Styles.module.css';
 const CardSection = (props) => {
-
     const [arrayPokemones, setArrayPokemons] = useState([]);
     const [loadMoreurl, setLoadMore] = useState(null);
     let array1 = [];
         let array2 = [];
+        let id = '';
+// const classes = `AnchoType ${error}`
+
+
     const getPokemon = async () =>{
     
-    
-        let url = "https://pokeapi.co/api/v2/pokemon?limit=60&offset=0"
+        let url = "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0"
     
         const Res = await fetch(url)
         const Data = await Res.json()
@@ -22,8 +26,9 @@ const CardSection = (props) => {
 
                 const res = await fetch(pokemon.url)
                 const data = await res.json()
-                // console.log(data);
+                console.log(data);
                   let PokemonInd = {
+                      num: data.id,
                       nombre: data.name,
                       urlImagen: data.sprites.front_default,
                       tipos: data.types.map(tipos => tipos.type.name)
@@ -38,14 +43,11 @@ const CardSection = (props) => {
     }
     
 
-    export const LoadMorePokemons = () => {
-        
-    }
     useEffect(() => {
         getPokemon();
     }, [])
 
-    
+//  console.log(arrayPokemones);
     return (
 
            <CardGroup
@@ -61,11 +63,23 @@ const CardSection = (props) => {
                           src={pokemon.urlImagen}
 
                         />
+                        <CardSubtitle>
+                            {`N.° ${prefix(pokemon.num,id)}`}
+                        </CardSubtitle>
                          <CardBody>
                              <CardTitle>
                                  {pokemon.nombre}
-                             </CardTitle>
+                             </CardTitle> 
                          </CardBody>
+                         <CardBody className='FlexTypesContainer'>
+                             {
+                                 pokemon.tipos.map((pokemon, index) =>
+                                  <CardSubtitle key={index} className={`AnchoType ${styles[pokemon]}`}>
+                                         {pokemon}                 
+                                 </CardSubtitle>
+                                 )
+                             }
+                             </CardBody>
                     </Card>
                    )
                }
