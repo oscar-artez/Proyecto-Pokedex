@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {CardBody, CardGroup, CardTitle, Card,CardImg, CardSubtitle} from 'reactstrap';
 import '../App.css';
-import { prefix } from '../Functions/Functions';
+import { prefix, CapitalizeName} from '../Functions/Functions';
 import styles from '../Styles/Styles.module.css';
 const CardSection = (props) => {
     const [arrayPokemones, setArrayPokemons] = useState([]);
@@ -58,17 +58,19 @@ const CardSection = (props) => {
                     <Card
                     className='AnchoCard'
                     key={index}>
+                        <div className='imgCard'>
                         <CardImg
                           alt="Card image cap"
                           src={pokemon.urlImagen}
 
                         />
-                        <CardSubtitle>
+                        </div>
+                        <CardSubtitle className='prefixNum'>
                             {`N.° ${prefix(pokemon.num,id)}`}
                         </CardSubtitle>
                          <CardBody>
                              <CardTitle>
-                                 {pokemon.nombre}
+                                 {CapitalizeName(pokemon.nombre)}
                              </CardTitle> 
                          </CardBody>
                          <CardBody className='FlexTypesContainer'>

@@ -1,8 +1,13 @@
 .AnchoCard{
-    width: 15%;
+    width: 25%;
     flex: unset!important;
     margin: 5% auto;
    
+}
+.imgCard{
+    width: 80%!important;
+    margin: 5% auto;
+
 }
 .card-group>.card+.card{
     border-left: 1px solid rgba(0,0,0,.125)!important;
@@ -19,4 +24,16 @@
     width: 100%;
     text-align: center;
     margin: 0 1%;
+}
+.prefixNum{
+    font-size: 12px;
+    color: #6a6a6a;
+    padding-left: 10%;
+}
+.card-title{
+    font-weight: bold;
+}
+.card-img{
+    vertical-align:unset;
+    background-color: #F2F2F2 ;
 }

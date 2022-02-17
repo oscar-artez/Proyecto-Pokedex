@@ -1,14 +1,23 @@
-export function prefix(idP, id){
-    
-        if(toString(idP).length == 3){
-           id = ''+toString(idP);
-            return id
-        }else if(toString(idP).length== 2){
-            id = '0'+toString(idP);
-            return id
-        }else if(toString(idP).length == 1){
-            id = '00'+toString(idP);
-            return id
+export function prefix(idP){
+    let id = idP.toString();
+        if(id.length === 4){
+            id = '' + id;
         }
-        return id;
+         else if(id.length === 3){
+             id = '0' + id;
+         }else if(id.length === 2){
+            id = '00'+id;
+         }else if(id.length === 1){
+            id = '000'+id;
+         }
+
+    return id;
 }
+
+export function CapitalizeName(name){
+    let changeName = name.charAt(0).toUpperCase() + name.slice(1);
+    
+    return changeName;
+
+}
+
