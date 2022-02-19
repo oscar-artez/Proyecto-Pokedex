@@ -1,6 +1,7 @@
 
 import './App.css';
 import CardSection from './Components/CardSection';
+import Modals from './Components/Modals';
 import Navbar from './Components/Navbar';
 
 function App() {
@@ -14,7 +15,9 @@ function App() {
     <div className="d-grid gap-2">
     {/* <button onclick="(() => )" id='LoadMore' className="btn btn-primary" type="button">Cargar mas</button> */}
     </div>
+    <Modals/>
     </div>
+
   );
 }
 
