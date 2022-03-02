@@ -1,21 +1,25 @@
 
 import './App.css';
+import './Styles/StylesMypage.css'
 import CardSection from './Components/CardSection';
 import Modals from './Components/Modals';
+import Mypage from './Components/Mypage';
 import Navbar from './Components/Navbar';
 
 function App() {
-
+  const [theme, setTheme] = useState(initialTheme);
   return (
     <div className="App">
-    <Navbar/>
-    <CardSection
-    
+    <Navbar
+    //filtrarBusqueda={(e) => {filtrarProductos(e.target.value)}}
     />
-    <div className="d-grid gap-2">
-    {/* <button onclick="(() => )" id='LoadMore' className="btn btn-primary" type="button">Cargar mas</button> */}
-    </div>
-    <Modals/>
+    <Mypage/>
+    {/* <CardSection
+    
+    /> */}
+    {/* <div className="d-grid gap-2">
+    </div> */}
+    {/* <Modals/> */}
     </div>
 
   );

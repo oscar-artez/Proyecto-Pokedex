@@ -3,13 +3,14 @@ import {CardBody, CardGroup, CardTitle, Card,CardImg, CardSubtitle} from 'reacts
 import '../App.css';
 import { prefix, CapitalizeName} from '../Functions/Functions';
 import styles from '../Styles/Styles.module.css';
-const CardSection = (props) => {
+const CardSection = () => {
     const [arrayPokemones, setArrayPokemons] = useState([]);
     const [loadMoreurl, setLoadMore] = useState(null);
     let array1 = [];
         let array2 = [];
         let id = '';
-// const classes = `AnchoType ${error}`
+    const [pokemonesFiltrados, setpokemonesFiltrados] = useState([]);
+    const [searchOn, setSearchOn] = useState(false);
 
 
     const getPokemon = async () =>{
@@ -26,7 +27,7 @@ const CardSection = (props) => {
 
                 const res = await fetch(pokemon.url)
                 const data = await res.json()
-                console.log(data);
+                // console.log(data);
                   let PokemonInd = {
                       num: data.id,
                       nombre: data.name,
@@ -35,26 +36,45 @@ const CardSection = (props) => {
                   }
                 
                   setArrayPokemons(currentList => [...currentList, PokemonInd]);
+                  setpokemonesFiltrados(currentList => [...currentList, PokemonInd]);
             })
         } 
-                setArrayPokemons(array2);
+                
+        //setArrayPokemons(array2);
+        //setpokemonesFiltrados(array2);
                 getPokemonData (Data.results);
                 console.log(arrayPokemones);
     }
     
+    const filtrarPokemones = (busqueda) => {
+        busqueda ? setSearchOn(true) : setSearchOn(false);
 
+        console.log('Búsqueda', busqueda);
+
+        let resultado = arrayPokemones.filter(prod => 
+            prod.nombre.toLowerCase().includes(busqueda.toLowerCase())
+        );
+
+        setpokemonesFiltrados(resultado);
+        console.log('resultado', resultado);
+    }
     useEffect(() => {
         getPokemon();
     }, [])
 
-//  console.log(arrayPokemones);
-    return (
 
+    return (
+        <div>
+     <form className="d-flex">
+      <input onChange={(e) => {filtrarPokemones(e.target.value)}} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+      <button className="btn btn-outline-success" type="button">Search</button>
+    </form>
            <CardGroup
            className='GroupCard'
            >
                {
-                   arrayPokemones.map((pokemon,index)=>
+                pokemonesFiltrados.length > 0 ? 
+                pokemonesFiltrados.map((pokemon,index)=>
                     <Card
                     className='AnchoCard'
                     key={index}>
@@ -79,14 +99,16 @@ const CardSection = (props) => {
                                   <CardSubtitle key={index} className={`AnchoType ${styles[pokemon]}`}>
                                          {pokemon}                 
                                  </CardSubtitle>
-                                 )
+                                 ) 
                              }
                              </CardBody>
                     </Card>
-                   )
+                   ): pokemonesFiltrados.length === 0 && searchOn ? 
+                    (<p>No hay resultados</p>) :
+                    (<p>Cargando...</p>)
                }
             </CardGroup> 
-
+            </div>
 
     )
 }
