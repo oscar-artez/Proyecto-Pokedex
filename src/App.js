@@ -7,19 +7,19 @@ import Mypage from './Components/Mypage';
 import Navbar from './Components/Navbar';
 
 function App() {
-  const [theme, setTheme] = useState(initialTheme);
+  // const [theme, setTheme] = useState(initialTheme);
   return (
     <div className="App">
     <Navbar
     //filtrarBusqueda={(e) => {filtrarProductos(e.target.value)}}
     />
-    <Mypage/>
-    {/* <CardSection
+    {/* <Mypage/> */}
+    <CardSection
     
-    /> */}
+    /> 
     {/* <div className="d-grid gap-2">
     </div> */}
-    {/* <Modals/> */}
+    <Modals/>
     </div>
 
   );
